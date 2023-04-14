@@ -1,33 +1,29 @@
 import style from "./PhonebookForm.module.css";
 import { useSelector, useDispatch } from "react-redux";
-import { getContacts } from "components/redux/contactsList/selectors";
-// import { addContact } from "components/redux/phonebookForm/actions";
-// import { addContact } from "components/redux/phonebookForm/phonebookSlice";
+import { selectContacts } from "components/redux/contactsList/selectors";
+import { addContact } from "components/redux/operations";
 
 export const PhonebookForm = (props) => {
     // const {handleSubmit} = props;
-    const contacts = useSelector(getContacts);
+    const contacts = useSelector(selectContacts);
     const dispatch = useDispatch();
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
 
-        const nameVal = evt.target.name.value;
-        const numVal = evt.target.number.value;
-        const regex = new RegExp(`\\b${nameVal}\\b`, 'i');
-        // console.log("handleSubmit ", nameVal, numVal);
+        const name = evt.target.name.value;
+        const phone = evt.target.number.value;
+        const regex = new RegExp(`\\b${name}\\b`, 'i');
+        
         for (let element of contacts) {
-            console.log('handlesubmir for ', element)
             if (regex.test(element.name)) {
                 alert(`${element.name} is already in contacts.`)
                 return;
             }
         }
         
-        // addContact(nameVal, numVal);
-        // dispatch(addContact(nameVal, numVal));
-        evt.target.name.value = '';
-        evt.target.number.value = '';
+        dispatch(addContact({name, phone}));
+        evt.target.reset();
     }
     return <form action="" onSubmit={handleSubmit} className={style.form}>
         <label htmlFor="name" className={style.nameLabel}>Name</label>
@@ -36,7 +32,7 @@ export const PhonebookForm = (props) => {
             className={style.nameInput}
             type="text"
             name="name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
         />
@@ -47,7 +43,7 @@ export const PhonebookForm = (props) => {
             id="number"
             type="tel"
             name="number"
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
         />

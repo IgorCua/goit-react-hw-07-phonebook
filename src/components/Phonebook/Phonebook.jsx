@@ -5,25 +5,26 @@ import style from "./Phonebook.module.css";
 import { PhonebookForm } from "./PhonebookForm/PhonebookForm";
 import { ContactsList } from "./ContactsList/ContactsList";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchContacts } from "components/redux/operations";
+import { selectIsLoading ,selectError } from "components/redux/contactsList/selectors";
 // import { useSelector } from "react-redux";
 // import { fetchingError, fetchingInProgress, fetchingSuccess } from "components/redux/phonebookForm/phonebookSlice";
 
 export const Phonebook = () => {
     const dispatch = useDispatch();
+    const isLoading = useSelector(selectIsLoading);
+    const error = useSelector(selectError);
 
     useEffect(()=> {
         dispatch(fetchContacts())
-    }, [dispatch])
+    }, [dispatch]);
     
-    return <section>
+    return <section className={style.section}>
         <h1 className={style.title}>Phonebook</h1>
         <PhonebookForm/>   
-        <ContactsList 
-            // searchByName={searchByName}
-           
-        >
+        {isLoading && !error && <b>Request in progress...</b>}
+        <ContactsList>
         </ContactsList >
     </section>
 }
