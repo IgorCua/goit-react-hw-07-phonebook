@@ -1,22 +1,22 @@
-import { createStore } from 'redux';
-import { persistStore, persistReducer } from 'redux-persist'
-import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
+// import { createStore } from 'redux';
+// import { persistStore, persistReducer } from 'redux-persist'
+// import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 
 
-// import rootReducer from './reducers'
-import { contactsReducer } from './phonebookForm/phonebookSlice'
+// // import rootReducer from './reducers'
+// import { contactsReducer } from './phonebookForm/phonebookSlice'
 
-const persistConfig = {
-  key: 'root',
-  storage,
-}
+// const persistConfig = {
+//   key: 'root',
+//   storage,
+// }
 
-const persistedReducer = persistReducer(persistConfig, contactsReducer)
+// const persistedReducer = persistReducer(persistConfig, contactsReducer)
 
-function exportDef () {
-  let store = createStore(persistedReducer)
-  let persistor = persistStore(store)
-  return { store, persistor }
-}
+// function exportDef () {
+//   let store = createStore(persistedReducer)
+//   let persistor = persistStore(store)
+//   return { store, persistor }
+// }
 
-export default exportDef;
+// export default exportDef;

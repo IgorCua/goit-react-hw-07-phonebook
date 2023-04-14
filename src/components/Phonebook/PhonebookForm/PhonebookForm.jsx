@@ -2,7 +2,7 @@ import style from "./PhonebookForm.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { getContacts } from "components/redux/contactsList/selectors";
 // import { addContact } from "components/redux/phonebookForm/actions";
-import { addContact } from "components/redux/phonebookForm/phonebookSlice";
+// import { addContact } from "components/redux/phonebookForm/phonebookSlice";
 
 export const PhonebookForm = (props) => {
     // const {handleSubmit} = props;
@@ -25,7 +25,7 @@ export const PhonebookForm = (props) => {
         }
         
         // addContact(nameVal, numVal);
-        dispatch(addContact(nameVal, numVal));
+        // dispatch(addContact(nameVal, numVal));
         evt.target.name.value = '';
         evt.target.number.value = '';
     }

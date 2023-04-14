@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { getContacts, getFilter } from "components/redux/contactsList/selectors";
 // import { filterAction, deleteContact } from "components/redux/contactsList/actions";
 // import { deleteContact } from "components/redux/contactsList/actions";
-import { deleteContact } from "components/redux/phonebookForm/phonebookSlice";
+// import { deleteContact } from "components/redux/phonebookForm/phonebookSlice";
 import { filterAction } from "components/redux/contactsList/contactsListSlice";
-import localStorage from "redux-persist/es/storage";
+// import localStorage from "redux-persist/es/storage";
 
 export const ContactsList = (props) => {
     // const {searchByName, handleFilterChange, deleteFromContacts} = props;
@@ -34,7 +34,7 @@ export const ContactsList = (props) => {
     const deleteFromContacts = (evt) => {
         const elemId = evt.target.parentElement.id;
         
-        dispatch(deleteContact(elemId));
+        // dispatch(deleteContact(elemId));
 
         // setContacts(contacts.filter(elem => {
         //     return elem.id !== elemId
